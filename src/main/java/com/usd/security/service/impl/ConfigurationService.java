@@ -19,13 +19,14 @@ public class ConfigurationService implements IConfigurationService{
 
 	@Override
 	public Integer saveConfiguration(Configuration cnf) {
+		cnf.setActiveSwitch("Active");
 		Integer id=configurationRepository.save(cnf).getCnfId();
 		return id;
 	}
 
 	@Override
 	public List<Configuration> getAllConfigurations() {
-    List<Configuration> list=configurationRepository.findAll();
+    List<Configuration> list=configurationRepository.findByActiveSwitch("active");
 		return list;
 	}
 
@@ -47,8 +48,11 @@ public class ConfigurationService implements IConfigurationService{
 
 	@Override
 	public void deleteConfiguration(Integer id) {
-        		Configuration cnf=getOneConfiguration(id);
-        		configurationRepository.delete(cnf);
+		/*
+		 * Configuration cnf=getOneConfiguration(id);
+		 * configurationRepository.delete(cnf);
+		 */
+		configurationRepository.updateActiveSwitch("InActive", id);
 	}
 	
 	

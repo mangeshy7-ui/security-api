@@ -22,6 +22,7 @@ public class Configuration {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cnfId;
+	private String activeSwitch;
 	private String type;
 	private String name;
 	private String completLogPath;
